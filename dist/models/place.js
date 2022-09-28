@@ -25,13 +25,13 @@ class Place {
         this.where = where;
         this.openingHours = openingHours;
     }
-    static getPlaceData(placeId) {
+    static getData(placeId) {
         return __awaiter(this, void 0, void 0, function* () {
-            let place;
+            let fetchedPlace;
             yield (0, node_fetch_1.default)(`${process.env.fetchURL}${placeId}`)
                 .then((res) => res.json())
-                .then((placeData) => (place = new Place(placeId, placeData.displayed_what, placeData.displayed_where, placeData.opening_hours)));
-            return place;
+                .then((placeData) => (fetchedPlace = new Place(placeId, placeData.displayed_what, placeData.displayed_where, placeData.opening_hours)));
+            return fetchedPlace;
         });
     }
 }

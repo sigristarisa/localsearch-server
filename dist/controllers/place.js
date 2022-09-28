@@ -11,17 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPlaceId = void 0;
 const place_1 = require("../models/place");
+const responses_1 = require("../helpers/responses");
+const validPlaceId_1 = require("../helpers/validPlaceId");
 const getPlaceId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const placeId = req.params.placeId;
-    const validPlaceId = [
-        "GXvPAor1ifNfpF0U5PTG0w",
-        "ohGSnJtMIC5nPfYRi_HTAg",
-    ];
     try {
-        if (!validPlaceId.includes(placeId))
-            console.log("oops");
-        const foundPlace = yield place_1.Place.getPlaceData(placeId);
-        res.json({ data: foundPlace });
+        if (!validPlaceId_1.validPlaceId.includes(placeId)) {
+            return (0, responses_1.sendMessageResponse)(res, 400, "invalid place id");
+        }
+        const foundPlace = yield place_1.Place.getData(placeId);
+        return (0, responses_1.sendDataResponse)(res, 200, foundPlace);
     }
     catch (error) {
         // console.error("What happened?: ", error.message);
