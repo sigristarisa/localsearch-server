@@ -20,6 +20,10 @@ class Place {
         this.what = what;
         this.where = where;
         this.openingHours = openingHours;
+        this.placeId = placeId;
+        this.what = what;
+        this.where = where;
+        this.openingHours = openingHours;
     }
     static getPlaceData(placeId) {
         return __awaiter(this, void 0, void 0, function* () {

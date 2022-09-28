@@ -2,16 +2,11 @@ import { OpeningHours, PlaceId } from "../helpers/types";
 import fetch from "node-fetch";
 
 export class Place {
-  placeId: string;
-  what: string;
-  where: string;
-  openingHours: OpeningHours | null;
-
   constructor(
-    placeId: string,
-    what: string,
-    where: string,
-    openingHours: OpeningHours | null
+    public placeId: string,
+    public what: string,
+    public where: string,
+    public openingHours: OpeningHours | null
   ) {
     this.placeId = placeId;
     this.what = what;

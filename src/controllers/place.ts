@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
 import { Place } from "../models/place";
-import { PlaceId } from "../helpers/types";
 
 export const getPlaceId: RequestHandler = async (req, res) => {
   const placeId = req.params.placeId;
