@@ -6,17 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
-// import { getPlaceId } from "./controllers/place";
+const place_1 = require("./controllers/place");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.urlencoded({ extended: true }));
-app.get("/", (req, res) => {
-    res.send("Hello from the root application URL");
-});
+app.use(express_1.default.json());
+app.get("/:placeId", place_1.getPlaceId);
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`\n Server is running on http://localhost:${port}\n`);
 });
-// app.get("/", getPlaceId);
 //# sourceMappingURL=index.js.map

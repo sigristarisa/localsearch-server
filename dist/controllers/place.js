@@ -10,16 +10,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPlaceId = void 0;
+const place_1 = require("../models/place");
 const getPlaceId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //   const { placeId } = req.body;
-    //   const validPlaceId: string[] = [
-    //     "GXvPAor1ifNfpF0U5PTG0w",
-    //     "ohGSnJtMIC5nPfYRi_HTAg",
-    //   ];
-    //   if (!validPlaceId.includes(placeId)) res.json({ data: "oops" });
-    //   const foundPlace = await Place.getPlaceData(placeId);
-    //   res.json({ data: foundPlace });
-    res.json({ data: "Hi" });
+    const placeId = req.params.placeId;
+    const validPlaceId = [
+        "GXvPAor1ifNfpF0U5PTG0w",
+        "ohGSnJtMIC5nPfYRi_HTAg",
+    ];
+    try {
+        if (!validPlaceId.includes(placeId))
+            console.log("oops");
+        const foundPlace = yield place_1.Place.getPlaceData(placeId);
+        res.json({ data: foundPlace });
+    }
+    catch (error) {
+        // console.error("What happened?: ", error.message);
+        res.status(500).json({ error: "ERROR – Something went wrong" });
+    }
 });
 exports.getPlaceId = getPlaceId;
 //# sourceMappingURL=place.js.map

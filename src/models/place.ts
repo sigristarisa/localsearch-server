@@ -1,13 +1,14 @@
 import { OpeningHours, PlaceId } from "../helpers/types";
+import fetch from "node-fetch";
 
 export class Place {
-  placeId: number;
+  placeId: string;
   what: string;
   where: string;
   openingHours: OpeningHours | null;
 
   constructor(
-    placeId: number,
+    placeId: string,
     what: string,
     where: string,
     openingHours: OpeningHours | null
@@ -18,9 +19,21 @@ export class Place {
     this.openingHours = openingHours;
   }
 
-  static async getPlaceData(placeId: PlaceId) {
-    fetch(`${process.env.fetchURL!}${placeId}`)
+  static async getPlaceData(placeId: string) {
+    let place;
+    await fetch(
+      `https://storage.googleapis.com/coding-session-rest-api/${placeId}`
+    )
       .then((res) => res.json())
-      .then((placeData) => console.log(placeData));
+      .then(
+        (placeData) =>
+          (place = new Place(
+            placeId,
+            placeData.displayed_what,
+            placeData.displayed_where,
+            placeData.opening_hours
+          ))
+      );
+    return place;
   }
 }
