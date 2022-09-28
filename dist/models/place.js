@@ -28,7 +28,7 @@ class Place {
     static getPlaceData(placeId) {
         return __awaiter(this, void 0, void 0, function* () {
             let place;
-            yield (0, node_fetch_1.default)(`https://storage.googleapis.com/coding-session-rest-api/${placeId}`)
+            yield (0, node_fetch_1.default)(`${process.env.fetchURL}${placeId}`)
                 .then((res) => res.json())
                 .then((placeData) => (place = new Place(placeId, placeData.displayed_what, placeData.displayed_where, placeData.opening_hours)));
             return place;

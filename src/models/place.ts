@@ -16,9 +16,7 @@ export class Place {
 
   static async getPlaceData(placeId: string) {
     let place;
-    await fetch(
-      `https://storage.googleapis.com/coding-session-rest-api/${placeId}`
-    )
+    await fetch(`${process.env.fetchURL}${placeId}`)
       .then((res) => res.json())
       .then(
         (placeData) =>
