@@ -14,6 +14,10 @@ export const getPlaceId: RequestHandler = async (req, res) => {
     const foundPlace: PlaceData = await Place.getData(placeId);
     return sendDataResponse(res, 200, foundPlace);
   } catch (error: any) {
-    return sendMessageResponse(res, 500, "Something went wrong");
+    return sendMessageResponse(
+      res,
+      500,
+      "Something went wrong – please try again"
+    );
   }
 };

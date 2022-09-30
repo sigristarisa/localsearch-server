@@ -1,16 +1,17 @@
-type Schedule = {
+type Time = {
   start: string;
   end: string;
   type: string;
 };
 
 type Day = {
-  tuesday: Schedule[];
-  wednesday: Schedule[];
-  thursday: Schedule[];
-  friday: Schedule[];
-  saturday: Schedule[];
-  sunday: Schedule[];
+  monday: Time[];
+  tuesday: Time[];
+  wednesday: Time[];
+  thursday: Time[];
+  friday: Time[];
+  saturday?: Time[];
+  sunday?: Time[];
 };
 
 export type OpeningHours = {
