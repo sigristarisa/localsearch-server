@@ -15,6 +15,7 @@ const responses_1 = require("../helpers/responses");
 const validPlaceId_1 = require("../helpers/validPlaceId");
 const getPlaceId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const placeId = req.params.placeId;
+    console.log("hi");
     try {
         if (!validPlaceId_1.validPlaceId.includes(placeId)) {
             return (0, responses_1.sendMessageResponse)(res, 400, "invalid place id");
@@ -23,8 +24,7 @@ const getPlaceId = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return (0, responses_1.sendDataResponse)(res, 200, foundPlace);
     }
     catch (error) {
-        // console.error("What happened?: ", error.message);
-        res.status(500).json({ error: "ERROR – Something went wrong" });
+        return (0, responses_1.sendMessageResponse)(res, 500, "Something went wrong – please try again");
     }
 });
 exports.getPlaceId = getPlaceId;

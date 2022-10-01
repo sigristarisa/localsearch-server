@@ -25,12 +25,36 @@ class Place {
         this.where = where;
         this.openingHours = openingHours;
     }
+    static formatOpeningHours(openingHours) {
+        const formattedOpeningHours = Object.assign({}, openingHours);
+        const days = [
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday",
+        ];
+        const openingDays = Object.keys(formattedOpeningHours.days);
+        console.log("openingDays", openingDays);
+        const closedDays = days.filter((day) => {
+            console.log("day in filter", day);
+            if (!openingDays.includes(day))
+                return day;
+        });
+        console.log("closedDays", closedDays);
+        for (const closedDay of closedDays) {
+            formattedOpeningHours["days"][closedDay] = [];
+        }
+        return formattedOpeningHours;
+    }
     static getData(placeId) {
         return __awaiter(this, void 0, void 0, function* () {
             let fetchedPlace;
             yield (0, node_fetch_1.default)(`${process.env.fetchURL}${placeId}`)
                 .then((res) => res.json())
-                .then((placeData) => (fetchedPlace = new Place(placeId, placeData.displayed_what, placeData.displayed_where, placeData.opening_hours)));
+                .then((placeData) => (fetchedPlace = new Place(placeId, placeData.displayed_what, placeData.displayed_where, this.formatOpeningHours(placeData.opening_hours))));
             return fetchedPlace;
         });
     }
