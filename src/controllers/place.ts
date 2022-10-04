@@ -6,7 +6,6 @@ import { validPlaceId } from "../helpers/validPlaceId";
 
 export const getPlaceId: RequestHandler = async (req, res) => {
   const placeId: string = req.params.placeId;
-  console.log("hi");
   try {
     if (!validPlaceId.includes(placeId)) {
       return sendMessageResponse(res, 400, "invalid place id");

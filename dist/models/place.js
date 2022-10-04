@@ -37,13 +37,10 @@ class Place {
             "sunday",
         ];
         const openingDays = Object.keys(formattedOpeningHours.days);
-        console.log("openingDays", openingDays);
         const closedDays = days.filter((day) => {
-            console.log("day in filter", day);
             if (!openingDays.includes(day))
                 return day;
         });
-        console.log("closedDays", closedDays);
         for (const closedDay of closedDays) {
             formattedOpeningHours["days"][closedDay] = [];
         }

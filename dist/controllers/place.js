@@ -15,7 +15,6 @@ const responses_1 = require("../helpers/responses");
 const validPlaceId_1 = require("../helpers/validPlaceId");
 const getPlaceId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const placeId = req.params.placeId;
-    console.log("hi");
     try {
         if (!validPlaceId_1.validPlaceId.includes(placeId)) {
             return (0, responses_1.sendMessageResponse)(res, 400, "invalid place id");
